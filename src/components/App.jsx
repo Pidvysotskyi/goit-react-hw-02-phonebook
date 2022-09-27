@@ -47,7 +47,9 @@ export class App extends Component {
         <h1>PhoneBook</h1>
         <InputForm onSubmit={this.formSubmitHandler} />
         {contacts.length > 0 && <h2>Contacts</h2>}
-        <Filter filterValue={filter} onValueChange={this.changeFilter} />
+        {contacts.length > 0 && (
+          <Filter filterValue={filter} onValueChange={this.changeFilter} />
+        )}
         <Contacts
           contacts={visibleContacts}
           onDelete={this.contactDeleteHandler}
