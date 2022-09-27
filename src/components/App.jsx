@@ -9,11 +9,16 @@ export class App extends Component {
     contacts: [],
     filter: '',
   };
+
   formSubmitHandler = newData => {
     newData.id = nanoid();
-    this.setState(prevState => ({
-      contacts: [...prevState.contacts, newData],
-    }));
+    if (this.state.contacts.find(contact => contact.name === newData.name)) {
+      alert(`${newData.name} is already in contacts`);
+    } else {
+      this.setState(prevState => ({
+        contacts: [...prevState.contacts, newData],
+      }));
+    }
   };
 
   contactDeleteHandler = contactId => {
