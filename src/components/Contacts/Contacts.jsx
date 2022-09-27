@@ -1,19 +1,20 @@
 import PropTypes from 'prop-types';
+import { List, ListItem } from './Contacts.styled';
+import { Button } from 'components/InputForm/InputForm.styled';
+
 export const Contacts = ({ contacts, onDelete }) => {
   return (
-    <div>
-      <ul>
-        {contacts.map(({ name, id, number }) => {
-          return (
-            <li key={id}>
-              <span>{name}:</span>
-              <span>{number}</span>
-              <button onClick={() => onDelete(id)}>Delete</button>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+    <List>
+      {contacts.map(({ name, id, number }) => {
+        return (
+          <ListItem key={id}>
+            <span>{name}:</span>
+            <span>{number}</span>
+            <Button onClick={() => onDelete(id)}>Delete</Button>
+          </ListItem>
+        );
+      })}
+    </List>
   );
 };
 
