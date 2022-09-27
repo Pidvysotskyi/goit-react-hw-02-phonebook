@@ -11,8 +11,13 @@ export class App extends Component {
   };
 
   formSubmitHandler = newData => {
+    const { contacts } = this.state;
     newData.id = nanoid();
-    if (this.state.contacts.find(contact => contact.name === newData.name)) {
+    if (
+      contacts.find(
+        ({ name }) => name.toLowerCase() === newData.name.toLowerCase()
+      )
+    ) {
       alert(`${newData.name} is already in contacts`);
     } else {
       this.setState(prevState => ({
