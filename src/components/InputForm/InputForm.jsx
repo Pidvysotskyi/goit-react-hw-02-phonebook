@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export class InputForm extends Component {
   state = {
@@ -56,3 +57,7 @@ export class InputForm extends Component {
     );
   }
 }
+
+InputForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
