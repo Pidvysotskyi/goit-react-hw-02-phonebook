@@ -11,20 +11,22 @@ export class App extends Component {
     filter: '',
   };
 
-  formSubmitHandler = newData => {
+  checkContactAvailability = newData => {
     const { contacts } = this.state;
+    return contacts.find(
+      ({ name }) => name.toLowerCase() === newData.name.toLowerCase()
+    );
+  };
+
+  formSubmitHandler = newData => {
     newData.id = nanoid();
-    if (
-      contacts.find(
-        ({ name }) => name.toLowerCase() === newData.name.toLowerCase()
-      )
-    ) {
+    if (this.checkContactAvailability(newData)) {
       alert(`${newData.name} is already in contacts`);
-    } else {
-      this.setState(prevState => ({
-        contacts: [...prevState.contacts, newData],
-      }));
+      return;
     }
+    this.setState(prevState => ({
+      contacts: [...prevState.contacts, newData],
+    }));
   };
 
   contactDeleteHandler = contactId => {
